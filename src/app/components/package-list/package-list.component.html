@@ -1,1 +1,13 @@
-<p>package-list works!</p>
+<div class="toolbar">
+  <input 
+    type="text" 
+    placeholder="Search..." 
+    [value]="searchString()" 
+    (input)="onSearch($event)"
+    class="search-input"
+  />
+  <button (click)="searchString.set('');loadPackages()" class="reload-btn" title="Reload">
+    &#x21bb;
+  </button>
+</div>
+
