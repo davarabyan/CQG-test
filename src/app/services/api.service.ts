@@ -9,14 +9,16 @@ import { Package } from '../models/interface';
 export class ApiService {
   constructor() { }
 
+  // NOTE for reviewer , I changed the BE side cors policy and added port 4200 to allow requests.
+
   private http = inject(HttpClient);
-  private baseUrl = 'mock-api';
+  private baseUrl = 'http://localhost:3000';
 
   private depCache = new Map<string, string[]>();
 
-  getPackeges(): Observable<Package[]> {
+  getPackages(): Observable<Package[]> {
     return this.http.get<Package[]>(`${this.baseUrl}/packages`)
   }
 
-  
+
 }
