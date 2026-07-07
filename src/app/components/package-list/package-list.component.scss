@@ -22,3 +22,68 @@
     }
   }
 }
+
+
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 0.25rem;
+  padding: 0.5rem;
+  border: 2px solid #444;
+  border-radius: 4px;
+  background-color: #fafafa;
+  
+}
+
+.package-card {
+  border: 2px solid #555;
+  border-radius: 8px;
+  background: white;
+  transition: background-color 0.2s, border-color 0.2s;
+  overflow: hidden;
+
+  .card-header {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    font-weight: 500;
+    background-color: transparent;
+    transition: background-color 0.2s;
+    
+    .scope {
+      color: #ff6a00; 
+    }
+    .name {
+      color: #777;
+    }
+  }
+
+  .card-body {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    
+    .downloads {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 0.25rem;
+    }
+    
+    .dependencies {
+      color: #888;
+    }
+  }
+
+
+  &.hovered {
+    .card-header {
+      background-color: #e0f2fe; 
+    }
+  }
+
+ 
+  &.is-dependency {
+    .card-header {
+      background-color: #fee2e2; 
+    }
+  }
+}

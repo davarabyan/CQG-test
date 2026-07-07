@@ -1,13 +1,37 @@
 <div class="toolbar">
-  <input 
-    type="text" 
-    placeholder="Search..." 
-    [value]="searchString()" 
-    (input)="onSearch($event)"
-    class="search-input"
-  />
-  <button (click)="searchString.set('');loadPackages()" class="reload-btn" title="Reload">
-    &#x21bb;
-  </button>
+    <input type="text" placeholder="Search..." [value]="searchString()" (input)="onSearch($event)"
+        class="search-input" />
+    <button (click)="searchString.set('');loadPackages()" class="reload-btn" title="Reload">
+        &#x21bb;
+    </button>
 </div>
 
+
+<div class="package-grid">
+    @if(!filteredPackages().length){
+    Nothing found
+    }
+    @for (pkg of filteredPackages(); track pkg.id) {
+    <div class="package-card" [class.hovered]="hoveredPackageId() === pkg.id"
+        [class.is-dependency]="activeDependencies().has(pkg.id)" (mouseenter)="onHover(pkg.id)"
+        (mouseleave)="onLeave()">
+        <div class="card-header">
+            @if (splitName(pkg.id); as split) {
+            <span class="scope">{{ split.scope }}</span><span class="name">{{ split.name }}</span>
+            } @else {
+            <span class="name">{{ pkg.id }}</span>
+            }
+        </div>
+
+        <div class="card-body">
+            <div class="downloads">
+                {{ pkg.weeklyDownloads | formatToK }}
+                <span class="icon">&#x2193;</span>
+            </div>
+            <div class="dependencies">
+                {{ pkg.dependencyCount }} {{ pkg.dependencyCount === 1 ? 'dependency' : 'dependencies' }}
+            </div>
+        </div>
+    </div>
+    }
+</div>
